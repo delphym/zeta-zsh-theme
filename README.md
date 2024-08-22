@@ -1,6 +1,7 @@
 # ζ(Zeta) ZSH Theme
 
 Another :star:theme for oh-my-zsh
+This a work of the original [ζ(Zeta)](https://github.com/skylerlee/zeta-zsh-theme) ZSH Theme which fixes broken non displaying branch names and git statuses.
 
 ## Screenshot
 
@@ -11,7 +12,7 @@ Another :star:theme for oh-my-zsh
 ### Via curl
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/skylerlee/zeta-zsh-theme/master/scripts/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/delphym/zeta-zsh-theme/master/scripts/install.sh)"
 ```
 
 ### Manually

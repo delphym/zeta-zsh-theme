@@ -51,7 +51,7 @@ function get_current_dir {
 # Git info.
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$blue_bold%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%} ✔ "
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$green_bold%}✔"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$red_bold%} ✘ "
 
 # Git status.
@@ -108,7 +108,7 @@ function git_prompt_status {
 
     # If no status, consider the working directory clean
     if [ -z "$status_string" ]; then
-        status_string=$(echo "$ZSH_THEME_GIT_PROMPT_CLEAN" | sed 's/ ✔ /✔/')
+        status_string="$ZSH_THEME_GIT_PROMPT_CLEAN"
     fi
 
     echo -n "$status_string"
