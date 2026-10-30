@@ -170,6 +170,10 @@ function get_prompt_indicator {
     fi
 }
 
+# Remove legacy precmd hook if updating in-place from an older version
+autoload -Uz add-zsh-hook is-at-least
+add-zsh-hook -d precmd print_prompt_head 2>/dev/null
+
 setopt prompt_subst
 
 PROMPT='$(get_prompt_header)
