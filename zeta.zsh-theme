@@ -25,6 +25,9 @@ local highlight_bg=$bg[red]
 
 local zeta='ζ'
 
+# Disable virtualenv prompt prefix so we can style it ourselves
+VIRTUAL_ENV_DISABLE_PROMPT=true
+
 # Machine name.
 function get_box_name {
     if [ -f ~/.box-name ]; then
@@ -131,7 +134,20 @@ function get_space {
     echo $space
 }
 
-# Prompt: # USER@MACHINE: DIRECTORY <BRANCH [STATUS]> --- (TIME_STAMP)
+function get_virtualenv_prompt {
+    local env_name=""
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        env_name="$(basename "$VIRTUAL_ENV")"
+    elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+        env_name="$CONDA_DEFAULT_ENV"
+    fi
+
+    if [[ -n "$env_name" ]]; then
+        echo " (%{$green%}$env_name%{$reset_color%})"
+    fi
+}
+
+# Prompt: # USER@MACHINE: DIRECTORY <BRANCH [STATUS]> (VIRTUALENV) --- (TIME_STAMP)
 # > command
 function get_prompt_header {
     local left_prompt="\
@@ -140,7 +156,8 @@ function get_prompt_header {
 %{$blue%}@\
 %{$cyan_bold%}$(get_box_name): \
 %{$yellow_bold%}$(get_current_dir)%{$reset_color%}\
-$(get_git_prompt) "
+$(get_git_prompt)\
+$(get_virtualenv_prompt) "
     local right_prompt="%{$blue%}($(get_time_stamp))%{$reset_color%} "
     echo "$left_prompt$(get_space $left_prompt $right_prompt)$right_prompt"
 }
